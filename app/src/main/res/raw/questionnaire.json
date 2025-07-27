@@ -79,7 +79,7 @@
     },
     {
       "id": "q7",
-      "text": "Name one person you can call immediately in an emergency.",
+        "text": "Name one person you can call immediately in an emergency.",
       "type": "text",
       "tip": "Save {q7} in your phone under a code-word so you can quietly call them when you need help."
     }
