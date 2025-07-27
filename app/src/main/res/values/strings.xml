@@ -10,10 +10,18 @@
     <string name="spinner">Spinner</string>
     <string name="manage_items">Manage Items</string>
 
+    <string name="questionnaire_scroll_area">Questionnaire area with selectable answers</string>
+
     <string-array name="categories_array">
         <item>Books</item>
         <item>Movies</item>
     </string-array>
 
+    <string name="select_relationship_status">Select Your Relationship Status:</string>
 
+    <string-array name="relationship_status_options">
+        <item>Still in a relationship</item>
+        <item>Planning to leave</item>
+        <item>Post-separation</item>
+    </string-array>
 </resources>
