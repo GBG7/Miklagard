@@ -16,6 +16,7 @@
         <item>Branch</item>
         <item>Follow-up</item>
     </string-array>
+    <string name="button">Button</string>
 
 
 </resources>
