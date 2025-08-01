@@ -14,6 +14,7 @@
         <item>Books</item>
         <item>Movies</item>
     </string-array>
+    <string name="button">Button</string>
 
 
 </resources>

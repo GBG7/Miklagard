@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         db = FirebaseDatabase.getInstance("https://b07-demo-summer-2024-default-rtdb.firebaseio.com/");
         DatabaseReference myRef = db.getReference("testDemo");
 
-//        myRef.setValue("B07 Demo!");
+        myRef.setValue("B07 Demo!");
         myRef.child("movies").setValue("B07 Demo!");
 
         if (savedInstanceState == null) {
