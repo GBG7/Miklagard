@@ -1,0 +1,179 @@
+{
+	"Warm-up": [
+		{
+			"id": "q0",
+			"text": "Which best describes your current relationship status?",
+			"type": "radio",
+			"optionToTip": {
+				"Still in a relationship": "Keep this plan updated, and remember you can always reach out if things escalate.",
+				"Planning to leave": "Start packing small items now so you’re ready when you decide to leave.",
+				"Post-separation": "It’s normal to feel unsettled, refer back to this plan whenever you need a safety reminder."
+			}
+		},
+		{
+			"id": "q1",
+			"text": "What city do you live in?",
+			"type": "dropdown",
+			"optionToTip": {
+				"Toronto": "Save the local support numbers for {q1} in your phone’s speed-dial so you can call immediately if you need help.",
+				"Vancouver": "Save the local support numbers for {q1} in your phone’s speed-dial so you can call immediately if you need help.",
+				"Ottawa": "Save the local support numbers for {q1} in your phone’s speed-dial so you can call immediately if you need help.",
+				"Edmonton": "Save the local support numbers for {q1} in your phone’s speed-dial so you can call immediately if you need help.",
+				"Winnipeg": "Save the local support numbers for {q1} in your phone’s speed-dial so you can call immediately if you need help."
+			}
+		},
+		{
+			"id": "q2",
+			"text": "Which room in your home feels the safest if you need to get away quickly?",
+			"type": "text",
+			"tip": "Keep your essentials (phone, keys, and a small flashlight) in {q2} so you can grab them instantly when you need to leave."
+		},
+		{
+			"id": "q3",
+			"text": "Who do you live with?",
+			"type": "radio",
+			"optionToTip": {
+				"Family": "Let those you live with: {q3} know your safe room and cue‐word so they can support you in an emergency.",
+				"Roommates": "Let those you live with: {q3} know your safe room and cue‐word so they can support you in an emergency.",
+				"Alone": "Since you live alone, identify a trusted neighbor or friend and share your safe room location with them.",
+				"Partner": "Because you live with your partner, keep your safety plan hidden (in {q2}), and consider storing a digital copy in a password-protected note they won’t see."
+			}
+		},
+		{
+			"id": "q4",
+			"text": "Do you have children?",
+			"type": "compound",
+			"optionToTip": {
+				"Yes": "Practice your safety plan with your children so that when they hear {q4-1}, they know exactly what to do.",
+				"No": "Even without children, it helps to identify a second safe space in your home."
+			},
+			"followup": {
+				"Yes": {
+					"text": "Enter a code word for your children. ",
+					"type": "text"
+				}
+			}
+		}
+	],
+	"Still in a relationship": [
+		{
+			"id": "q5",
+			"text": "Which form(s) of abuse are you experiencing?",
+			"type": "checkbox",
+			"tip": "If you face {q5} abuse, remember you don’t have to face it alone. Reach out to your emergency contact right away.",
+			"optionToTip": {
+				"Physical": "If you face {abuse_types} abuse, remember you don’t have to face it alone. Reach out to your emergency contact right away.",
+				"Emotional": "If you face {abuse_types} abuse, remember you don’t have to face it alone. Reach out to your emergency contact right away.",
+				"Financial": "If you face {abuse_types} abuse, remember you don’t have to face it alone. Reach out to your emergency contact right away.",
+				"Other": "If you face {abuse_types} abuse, remember you don’t have to face it alone. Reach out to your emergency contact right away."
+			}
+		},
+		{
+			"id": "q6",
+			"text": "Are you recording the incidents (dates, times, details)?",
+			"type": "radio",
+			"optionToTip": {
+				"Yes": "Log each incident (date, time, and a brief note) so you have clear records if needed later.",
+				"No": "Even brief notes on your phone can be helpful. Start logging today."
+			}
+		},
+		{
+			"id": "q7",
+			"text": "Name one person you can call immediately in an emergency.",
+			"type": "text",
+			"tip": "Save {q7} in your phone under a code-word so you can quietly call them when you need help."
+		}
+	],
+	"Planning to leave": [
+		{
+			"id": "q8",
+			"text": "When do you plan to leave?",
+			"type": "date",
+			"tip": "Set a real target {leave_timing} and pack one essential item each day until you’re ready."
+		},
+		{
+			"id": "q9",
+			"text": "Do you have a go-bag packed with essentials?",
+			"type": "radio",
+			"optionToTip": {
+				"Yes": "Great! Keep your go-bag in a hidden spot so you can grab it quickly.",
+				"No": "Pack a simple go-bag today with essentials like your ID, some cash, and a charger."
+			}
+		},
+		{
+			"id": "q10",
+			"text": "Where do you keep emergency cash or cards?",
+			"type": "text",
+			"tip": "Stash some cash and a spare card in {money_location}, a spot your partner won’t suspect."
+		},
+		{
+			"id": "q11",
+			"text": "Have you identified a safe place to stay?",
+			"type": "compound",
+			"optionToTip": {
+				"Yes": "Make sure {temp_shelter} knows you may arrive unexpectedly and how to contact you.",
+				"No": "Reach out to Victim Services Toronto or a trusted friend now to secure a shelter option before you leave."
+			},
+			"followup": {
+				"Yes": {
+					"text": "Enter the name of the temporary shelter. ",
+					"type": "text"
+				}
+			}
+		}
+	],
+	"Post-separation": [
+		{
+			"id": "q12",
+			"text": "Has the abuser continued any contact?",
+			"type": "radio",
+			"optionToTip": {
+				"Yes": "Since you’ve heard from them, stay vigilant and keep your protection order handy if you have one.",
+				"No": "Even without contact, keep your doors locked and your phone on in case you need to call 911."
+			}
+		},
+		{
+			"id": "q13",
+			"text": "Do you have a protection order? If yes, which type?",
+			"type": "compound",
+			"optionToTip": {
+				"Yes": "Carry your {legal_order} at all times and share copies with anyone who needs to know.",
+				"No": "Consider applying for a protection order; it can help deter unwanted contact."
+			},
+			"followup": {
+				"Yes": {
+					"text": "Enter the type of legal order. ",
+					"type": "text"
+				}
+			}
+		},
+		{
+			"id": "q14",
+			"text": "Are you using any safety tools (cameras, door alarms)?",
+			"type": "compound",
+			"optionToTip": {
+				"Yes": "Make sure your {equipment} is in working order and placed where you’ll notice it.",
+				"No": "Consider installing a simple door alarm or camera to alert you to unexpected entry."
+			},
+			"followup": {
+				"Yes": {
+					"text": "Enter the equipment being used. ",
+					"type": "text"
+				}
+			}
+		}
+	],
+	"Follow-up": [
+		{
+			"id": "q15",
+			"text": "Which type of support would help most right now?",
+			"type": "radio",
+			"optionToTip": {
+				"Counselling": "Reach out to {q15} - they can offer the specialized help you need right now.",
+				"Legal aid": "Reach out to {q15} - they can offer the specialized help you need right now.",
+				"Financial guidance": "Reach out to {q15} - they can offer the specialized help you need right now.",
+				"Co-parenting resources": "Reach out to {q15} - they can offer the specialized help you need right now."
+			}
+		}
+	]
+}

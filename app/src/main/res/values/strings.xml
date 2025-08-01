@@ -10,9 +10,11 @@
     <string name="spinner">Spinner</string>
     <string name="manage_items">Manage Items</string>
 
+    <!-- TODO: Change category names -->
     <string-array name="categories_array">
-        <item>Books</item>
-        <item>Movies</item>
+        <item>Warm-up</item>
+        <item>Branch</item>
+        <item>Follow-up</item>
     </string-array>
     <string name="button">Button</string>
 
