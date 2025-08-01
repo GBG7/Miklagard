@@ -11,7 +11,7 @@ public class Question {
     private LinkedHashMap<String, String> optionToTip;
     private LinkedHashMap<String, Question> followup;
 
-    private String category;
+    private String category; //added field for relationship status questionnaire UI
 
     public String getId() {
         return id;
@@ -55,10 +55,12 @@ public class Question {
         this.followup = followup;
     }
 
+ // new methods for added field category
     public String getCategory() {
         return category;
     }
     public void setCategory(String category) {
         this.category = category;
     }
+
 }
