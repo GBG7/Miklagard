@@ -1,0 +1,132 @@
+{
+  "Toronto": [
+    {
+      "name": "Victim Services Toronto",
+      "description": "• 24-Hour Crisis Line. Offer trauma-informed support and advocacy.",
+      "url": "https://www.victimservicestoronto.com/contact-us"
+    },
+    {
+      "name": "Gerstein Crisis Centre",
+      "description": "• For adults 16+ who are dealing with mental health, concurrent, or substance use issues and are currently in crisis. Short term (3-5 days) crisis beds available, 24/7 crisis intervention line.",
+      "url": "https://gersteincentre.org/"
+    },
+    {
+      "name": "Sexual Assault Survivors Website",
+      "description": "• Provides survivors immediate community assistance, information about reporting to police and the court process.",
+      "url": "https://yourchoice.to/"
+    },
+    {
+      "name": "Emergency Shelters",
+      "description": "• Emergency shelters provide security for women and their children fleeing violence and abuse by offering protection, hope and support.",
+      "url": "https://www.canada.ca/en/services/policing/victims.html"
+    },
+    {
+      "name": "Government of Canada Victims of Crime",
+      "description": "• Information and assistance on criminal Justice, Parole and Corrections systems.",
+      "url": "https://www.canada.ca/en/services/policing/victims.html"
+    }
+  ],
+  "Vancouver": [
+    {
+      "name": "VictimLinkBC",
+      "description": "• Provides information and referral services for victims of crime and immediate crisis support to victims of family and sexual violence.",
+      "url": "https://www2.gov.bc.ca/gov/content/justice/criminal-justice/victims-of-crime/victimlinkbc"
+    },
+    {
+      "name": "Vancouver Police Department",
+      "description": "• VPD Services Unit provides free and confidential support to victims, witnesses, and family members affected by crime and trauma.",
+      "url": "https://vpd.ca/report-a-crime/information-for-victims/"
+    },
+    {
+      "name": "Crime Victim Assistance Program",
+      "description": "• Provides benefits to assist victims and witnesses in coping with the effects of violent crime.",
+      "url": "https://www2.gov.bc.ca/gov/content/justice/criminal-justice/bcs-criminal-justice-system/if-you-are-a-victim-of-a-crime/victim-of-crime/financial-assistance-benefits"
+    },
+    {
+      "name": "Mental Health & Suicide Crisis Helpline",
+      "description": "• Provides benefits to assist victims and witnesses in coping with the effects of violent crime.",
+      "url": "https://www.crisiscentre.bc.ca/get-support/"
+    },
+    {
+      "name": "Transition Houses & Safe Homes List",
+      "description": "• Temporary housing for women and children leaving abusive situations.",
+      "url": "https://www.bchousing.org/housing-assistance/women-fleeing-violence/transition-houses-safe-homes"
+    }
+  ],
+  "Ottawa": [
+    {
+      "name": "Distress Centre of Ottawa",
+      "description": "• 24-Hour Crisis Line. Provides suicide prevention, crisis intervention, emotional support.",
+      "url": "https://ovs-svo.com/support-programs-for-victims-of-crime-and-tragedy/"
+    },
+    {
+      "name": "Ottawa Victim Services",
+      "description": "• Victim Quick Response Program: helps pay for services and resources for people affected by violent crimes. Victim Crisis and Referral Service: provides emotional and practical support to crime and tragedy victims.",
+      "url": "https://ovs-svo.com/support-programs-for-victims-of-crime-and-tragedy/"
+    },
+    {
+      "name": "Ottawa Rape Crisis Centre",
+      "description": "• Supports people who have experienced sexual or gender-based violence. Provides trauma counselling, psychoeducation, crisis support, and advocacy.",
+      "url": "https://www.canada.ca/en/services/policing/victims.html"
+    },
+    {
+      "name": "Emergency Shelters",
+      "description": "• Emergency shelters provide security for women and their children fleeing violence and abuse by offering protection, hope and support.",
+      "url": "https://www.canada.ca/en/services/policing/victims.html"
+    },
+    {
+      "name": "Government of Canada Victims of Crime",
+      "description": "• Information and assistance on criminal Justice, Parole and Corrections systems.",
+      "url": "https://www.canada.ca/en/services/policing/victims.html"
+    }
+  ],
+  "Edmonton": [
+    {
+      "name": "Victims of Crime Assistance Program",
+      "description": "• Government of Alberta program, victims of violent crime may be eligible for services to help with emergency expenses and their recovery.",
+      "url": "https://www.alberta.ca/victims-of-crime-assistance-program"
+    },
+    {
+      "name": "Crime and Trauma-Informed Support Services",
+      "description": "• Government of Alberta program, victims of violent crime may be eligible for services to help with emergency expenses and their recovery.",
+      "url": "https://www.edmontonpolice.ca/CommunityPolicing/FamilyProtection/CTSS"
+    },
+    {
+      "name": "211 Helpline",
+      "description": "• 24/7 free support via phone, text and chat. Helps you find resources or services for victims.",
+      "url": "https://ab.211.ca/"
+    },
+    {
+      "name": "Emergency Shelter - Lurana Shelter",
+      "description": "• First-stage, emergency shelter with meals, clothing, personal care items, counselling and child support.",
+      "url": "https://cssalberta.ca/Our-Services/Domestic-Abuse-Shelters-Support/Lurana-Shelter"
+    },
+    {
+      "name": "Victim Impact Statement",
+      "description": "• Guide for writing the victim impact statement to let the judge know how the offender's crime has impacted you.",
+      "url": "https://www.alberta.ca/victim-impact-statement"
+    }
+  ],
+  "Winnipeg": [
+    {
+      "name": "Victim Services",
+      "description": "• Supports victims of crime and trauma by providing information and referrals to community support agencies.",
+      "url": "https://www.winnipeg.ca/police/services/victim-services"
+    },
+    {
+      "name": "Domestic Violence Support Service",
+      "description": "• Provides protection for people who are at a high risk due to Intimate Partner Violence or stalking.",
+      "url": "https://www.gov.mb.ca/justice/vs/dvs/dvss/"
+    },
+    {
+      "name": "211 Helpline",
+      "description": "• 24/7 free support via phone, text and chat. Helps you find resources or services for victims.",
+      "url": "https://mb.211.ca/get-help-now/"
+    },
+    {
+      "name": "Emergency Shelter",
+      "description": "• Offers overnight shelter with food, water, showers, and harm reduction supplies.",
+      "url": "https://www.mainstreetproject.ca/need-assistance/"
+    }
+  ]
+}

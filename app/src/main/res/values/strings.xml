@@ -5,12 +5,16 @@
     <string name="delete_item">Delete Item</string>
     <string name="add_item">Add Item</string>
     <string name="back">Back</string>
-    <string name="recyclerview">RecyclerView</string>
+    <string name="tip_list">Tips</string>
     <string name="scroller">Scroller</string>
     <string name="spinner">Spinner</string>
     <string name="manage_items">Manage Items</string>
+    <string name="support_connections">Support Connections</string>
 
+
+    <string name="questionnaire_scroll_area">Questionnaire area with selectable answers</string>
     <!-- TODO: Change category names -->
+  
     <string-array name="categories_array">
         <item>Warm-up</item>
         <item>Branch</item>
@@ -18,5 +22,11 @@
     </string-array>
     <string name="button">Button</string>
 
+    <string name="select_relationship_status">Select Your Relationship Status:</string>
 
+    <string-array name="relationship_status_options">
+        <item>Still in a relationship</item>
+        <item>Planning to leave</item>
+        <item>Post-separation</item>
+    </string-array>
 </resources>

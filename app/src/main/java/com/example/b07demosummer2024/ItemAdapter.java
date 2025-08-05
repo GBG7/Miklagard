@@ -18,16 +18,13 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
     @NonNull
     @Override
     public ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_item_adapater, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_tip_item_adapater, parent, false);
         return new ItemViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
         Item item = itemList.get(position);
-        //holder.textViewTitle.setText(item.getTitle());
-        //holder.textViewAuthor.setText(item.getAuthor());
-        //holder.textViewGenre.setText(item.getGenre());
         holder.textViewDescription.setText(item.getDescription());
     }
 
@@ -44,7 +41,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
             //textViewTitle = itemView.findViewById(R.id.textViewTitle);
             //textViewAuthor = itemView.findViewById(R.id.textViewAuthor);
             //textViewGenre = itemView.findViewById(R.id.textViewGenre);
-            textViewDescription = itemView.findViewById(R.id.textViewDescription);
+            textViewDescription = itemView.findViewById(R.id.textViewTip);
         }
     }
 }
