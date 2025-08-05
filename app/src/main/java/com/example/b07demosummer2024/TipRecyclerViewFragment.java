@@ -1,6 +1,7 @@
 package com.example.b07demosummer2024;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,8 +48,11 @@ public class TipRecyclerViewFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_tips_recycler_view, container, false);
 
+
         recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+
 
         spinnerCategory = view.findViewById(R.id.spinnerCategory);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),
@@ -56,12 +60,14 @@ public class TipRecyclerViewFragment extends Fragment {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerCategory.setAdapter(adapter);
 
+
         itemList = new ArrayList<>();
         itemAdapter = new TipItemAdapter(itemList);
         recyclerView.setAdapter(itemAdapter);
 
-
         db = FirebaseDatabase.getInstance("https://sample-project-20250710-default-rtdb.firebaseio.com/");
+
+
 
         spinnerCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -69,6 +75,8 @@ public class TipRecyclerViewFragment extends Fragment {
                 String category = parent.getItemAtPosition(position).toString();
                 if(position == 1)
                     category = branchSpecificName;
+
+
 
                 loadQuestionsFromJson();
 
@@ -137,6 +145,7 @@ public class TipRecyclerViewFragment extends Fragment {
     }
 
     private void loadQuestionsFromJson(){
+
         try{
             InputStream is = getResources().openRawResource(R.raw.questionnaire);
             InputStreamReader reader = new InputStreamReader(is);
