@@ -29,7 +29,7 @@
         android:id="@+id/textView2"
         android:layout_width="410dp"
         android:layout_height="53dp"
-        android:background="#9C82E1"
+        android:background="#beaaf0"
         android:fontFamily="sans-serif-medium"
         android:gravity="center"
         android:includeFontPadding="false"
