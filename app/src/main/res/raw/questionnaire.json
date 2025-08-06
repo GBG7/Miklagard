@@ -49,6 +49,7 @@
       },
       "followup": {
         "Yes": {
+          "id": "q4-1",
           "text": "Enter a code word for your children. ",
           "type": "text"
         }
@@ -60,12 +61,11 @@
       "id": "q5",
       "text": "Which form(s) of abuse are you experiencing?",
       "type": "checkbox",
-      "tip": "If you face {q5} abuse, remember you don’t have to face it alone. Reach out to your emergency contact right away.",
       "optionToTip": {
-        "Physical": "If you face {abuse_types} abuse, remember you don’t have to face it alone. Reach out to your emergency contact right away.",
-        "Emotional": "If you face {abuse_types} abuse, remember you don’t have to face it alone. Reach out to your emergency contact right away.",
-        "Financial": "If you face {abuse_types} abuse, remember you don’t have to face it alone. Reach out to your emergency contact right away.",
-        "Other": "If you face {abuse_types} abuse, remember you don’t have to face it alone. Reach out to your emergency contact right away."
+        "Physical": "If you face {q5} abuse, remember you don’t have to face it alone. Reach out to your emergency contact right away.",
+        "Emotional": "If you face {q5} abuse, remember you don’t have to face it alone. Reach out to your emergency contact right away.",
+        "Financial": "If you face {q5} abuse, remember you don’t have to face it alone. Reach out to your emergency contact right away.",
+        "Other": "If you face {q5} abuse, remember you don’t have to face it alone. Reach out to your emergency contact right away."
       }
     },
     {
@@ -89,7 +89,7 @@
       "id": "q8",
       "text": "When do you plan to leave?",
       "type": "date",
-      "tip": "Set a real target {leave_timing} and pack one essential item each day until you’re ready."
+      "tip": "Set a real target {q8} and pack one essential item each day until you’re ready."
     },
     {
       "id": "q9",
@@ -104,18 +104,19 @@
       "id": "q10",
       "text": "Where do you keep emergency cash or cards?",
       "type": "text",
-      "tip": "Stash some cash and a spare card in {money_location}, a spot your partner won’t suspect."
+      "tip": "Stash some cash and a spare card in {q10}, a spot your partner won’t suspect."
     },
     {
       "id": "q11",
       "text": "Have you identified a safe place to stay?",
       "type": "compound",
       "optionToTip": {
-        "Yes": "Make sure {temp_shelter} knows you may arrive unexpectedly and how to contact you.",
+        "Yes": "Make sure {q11-1} knows you may arrive unexpectedly and how to contact you.",
         "No": "Reach out to Victim Services Toronto or a trusted friend now to secure a shelter option before you leave."
       },
       "followup": {
         "Yes": {
+          "id": "q11-1",
           "text": "Enter the name of the temporary shelter. ",
           "type": "text"
         }
@@ -137,11 +138,12 @@
       "text": "Do you have a protection order? If yes, which type?",
       "type": "compound",
       "optionToTip": {
-        "Yes": "Carry your {legal_order} at all times and share copies with anyone who needs to know.",
+        "Yes": "Carry your {q13-1} at all times and share copies with anyone who needs to know.",
         "No": "Consider applying for a protection order; it can help deter unwanted contact."
       },
       "followup": {
         "Yes": {
+          "id": "q13-1",
           "text": "Enter the type of legal order. ",
           "type": "text"
         }
@@ -152,11 +154,12 @@
       "text": "Are you using any safety tools (cameras, door alarms)?",
       "type": "compound",
       "optionToTip": {
-        "Yes": "Make sure your {equipment} is in working order and placed where you’ll notice it.",
+        "Yes": "Make sure your {q14-1} is in working order and placed where you’ll notice it.",
         "No": "Consider installing a simple door alarm or camera to alert you to unexpected entry."
       },
       "followup": {
         "Yes": {
+          "id": "q14-1",
           "text": "Enter the equipment being used. ",
           "type": "text"
         }

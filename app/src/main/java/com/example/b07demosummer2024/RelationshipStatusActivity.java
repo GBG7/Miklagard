@@ -1,39 +1,40 @@
 package com.example.b07demosummer2024;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
 import android.widget.*;
-import androidx.appcompat.app.AppCompatActivity;
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonArray;
+
+import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.io.InputStream;
 import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
-public class RelationshipStatusActivity extends AppCompatActivity {
+public class RelationshipStatusActivity extends BaseActivity {
 
     private LinearLayout questionContainer;
     private Map<String, List<Question>> categorizedQuestions = new LinkedHashMap<>();
     private List<Question> warmupQuestions = new ArrayList<>();
     private List<Question> followupQuestions = new ArrayList<>();
-    private List<Question> statusQuestions = new ArrayList<>();
+    private List<Question> filteredStatusQuestions = new ArrayList<>();
 
     private int warmupIndex = 0;
     private int statusIndex = 0;
     private int followupIndex = 0;
-    private List<Question> filteredStatusQuestions = new ArrayList<>();
 
     private String selectedStatus = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_relationship_status);
         questionContainer = findViewById(R.id.questionContainer);
         loadQuestionsFromJson();
         startQuestionnaire();
@@ -108,6 +109,8 @@ public class RelationshipStatusActivity extends AppCompatActivity {
                 followupIndex++;
                 showNextFollowupQuestion();
             });
+        } else {
+            goToHomePage();
         }
     }
 
@@ -119,7 +122,7 @@ public class RelationshipStatusActivity extends AppCompatActivity {
 
         switch (question.getType()) {
             case "radio":
-            case "dropdown": {
+            case "dropdown":
                 Spinner spinner = new Spinner(this);
                 List<String> options = new ArrayList<>(question.getOptionToTip().keySet());
                 ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, options);
@@ -127,30 +130,21 @@ public class RelationshipStatusActivity extends AppCompatActivity {
                 spinner.setAdapter(adapter);
                 questionContainer.addView(spinner);
 
-                spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    boolean isFirst = true;
-
-                    @Override
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        if (isFirst) {
-                            isFirst = false;
-                            return;
-                        }
-                        String selected = options.get(position);
-                        if (question.getText().toLowerCase().contains("relationship status")) {
-                            selectedStatus = selected;
-                        }
-                        spinner.setEnabled(false);
-                        onAnswered.run();
+                Button submitSpinner = new Button(this);
+                submitSpinner.setText("Submit");
+                submitSpinner.setOnClickListener(v -> {
+                    String selected = (String) spinner.getSelectedItem();
+                    if (question.getText().toLowerCase().contains("relationship status")) {
+                        selectedStatus = selected;
                     }
-
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parent) {}
+                    spinner.setEnabled(false);
+                    submitSpinner.setEnabled(false);
+                    onAnswered.run();
                 });
+                questionContainer.addView(submitSpinner);
                 break;
-            }
 
-            case "checkbox": {
+            case "checkbox":
                 LinearLayout layout = new LinearLayout(this);
                 layout.setOrientation(LinearLayout.VERTICAL);
                 List<CheckBox> checkBoxes = new ArrayList<>();
@@ -160,88 +154,90 @@ public class RelationshipStatusActivity extends AppCompatActivity {
                     layout.addView(cb);
                     checkBoxes.add(cb);
                 }
-                Button submit = new Button(this);
-                submit.setText("Submit");
-                submit.setOnClickListener(v -> {
+                Button cbSubmit = new Button(this);
+                cbSubmit.setText("Submit");
+                cbSubmit.setOnClickListener(v -> {
                     for (CheckBox cb : checkBoxes) cb.setEnabled(false);
-                    submit.setEnabled(false);
+                    cbSubmit.setEnabled(false);
                     onAnswered.run();
                 });
                 questionContainer.addView(layout);
-                questionContainer.addView(submit);
+                questionContainer.addView(cbSubmit);
                 break;
-            }
 
-            case "text": {
+            case "text":
+            case "date":
                 EditText et = new EditText(this);
-                et.setHint("Enter your answer");
+                et.setHint(question.getType().equals("date") ? "e.g. yyyy-MM-dd" : "Enter your answer");
+                if (question.getType().equals("date")) {
+                    et.setInputType(InputType.TYPE_CLASS_DATETIME);
+                }
                 questionContainer.addView(et);
-                Button submit = new Button(this);
-                submit.setText("Submit");
-                submit.setOnClickListener(v -> {
+                Button textSubmit = new Button(this);
+                textSubmit.setText("Submit");
+                textSubmit.setOnClickListener(v -> {
                     if (!et.getText().toString().trim().isEmpty()) {
                         et.setEnabled(false);
-                        submit.setEnabled(false);
+                        textSubmit.setEnabled(false);
                         onAnswered.run();
                     }
                 });
-                questionContainer.addView(submit);
+                questionContainer.addView(textSubmit);
                 break;
-            }
 
-            case "date": {
-                EditText et = new EditText(this);
-                et.setHint("e.g. yyyy-MM-dd");
-                et.setInputType(InputType.TYPE_CLASS_DATETIME);
-                questionContainer.addView(et);
-                Button submit = new Button(this);
-                submit.setText("Submit");
-                submit.setOnClickListener(v -> {
-                    if (!et.getText().toString().trim().isEmpty()) {
-                        et.setEnabled(false);
-                        submit.setEnabled(false);
+            case "compound":
+                Spinner compoundSpinner = new Spinner(this);
+                List<String> compoundOptions = new ArrayList<>(question.getOptionToTip().keySet());
+                ArrayAdapter<String> compAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, compoundOptions);
+                compAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                compoundSpinner.setAdapter(compAdapter);
+                questionContainer.addView(compoundSpinner);
+
+                Button compSubmit = new Button(this);
+                compSubmit.setText("Submit");
+                compSubmit.setOnClickListener(v -> {
+                    compoundSpinner.setEnabled(false);
+                    compSubmit.setEnabled(false);
+                    String selected = (String) compoundSpinner.getSelectedItem();
+                    if (question.getFollowup() != null && question.getFollowup().containsKey(selected)) {
+                        Question follow = question.getFollowup().get(selected);
+                        displayQuestion(follow, onAnswered);
+                    } else {
                         onAnswered.run();
                     }
                 });
-                questionContainer.addView(submit);
+                questionContainer.addView(compSubmit);
                 break;
-            }
-
-            case "compound": {
-                Spinner spinner = new Spinner(this);
-                List<String> options = new ArrayList<>(question.getOptionToTip().keySet());
-                ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, options);
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                spinner.setAdapter(adapter);
-                questionContainer.addView(spinner);
-
-                spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    boolean isFirst = true;
-                    @Override
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        if (isFirst) {
-                            isFirst = false;
-                            return;
-                        }
-                        spinner.setEnabled(false);
-                        String selected = options.get(position);
-                        if (question.getFollowup() != null && question.getFollowup().containsKey(selected)) {
-                            Question follow = question.getFollowup().get(selected);
-                            displayQuestion(follow, onAnswered);
-                        } else {
-                            onAnswered.run();
-                        }
-                    }
-
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parent) {}
-                });
-                break;
-            }
 
             default:
-                Toast.makeText(this, "Unsupported question type: " + question.getType(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Unsupported type: " + question.getType(), Toast.LENGTH_SHORT).show();
                 onAnswered.run();
         }
+    }
+
+    private void goToHomePage() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            String uid = user.getUid();
+            DatabaseReference ref = FirebaseDatabase.getInstance().getReference("responses").child(uid);
+            ref.setValue(true).addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    Intent intent = new Intent(RelationshipStatusActivity.this, HomeActivity.class);
+                    startActivity(intent);
+                    finish();
+                } else {
+                    Toast.makeText(this, "Error saving questionnaire progress.", Toast.LENGTH_SHORT).show();
+                }
+            });
+        } else {
+            Toast.makeText(this, "User not signed in.", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(RelationshipStatusActivity.this, LoginActivity.class));
+            finish();
+        }
+    }
+
+    @Override
+    protected int getLayoutResourceId() {
+        return R.layout.activity_relationship_status;
     }
 }
