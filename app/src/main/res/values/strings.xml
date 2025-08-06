@@ -1,4 +1,4 @@
-<resources>
+ <resources>
     <string name="app_name">B07 Demo Summer 2024</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -9,11 +9,22 @@
     <string name="scroller">Scroller</string>
     <string name="spinner">Spinner</string>
     <string name="manage_items">Manage Items</string>
+    <string name="edit_emergency_information">Edit Emergency Information</string>
+     <string name="options_menu_description">pop-up menu for editing, deleting, and downloading (Document only) information beind displayed</string>
+     <string name="default_text_for_no_file_selected">No file selected yet.</string>
 
+     <!-- TODO: Change category names -->
     <string-array name="categories_array">
-        <item>Books</item>
-        <item>Movies</item>
+        <item>Warm-up</item>
+        <item>Branch</item>
+        <item>Follow-up</item>
     </string-array>
 
+     <string-array name="emergency_information_categories_array">
+         <item>Document to Pack</item>
+         <item>Emergency Contact</item>
+         <item>Safe Location</item>
+         <item>Medication</item>
+     </string-array>
 
 </resources>
