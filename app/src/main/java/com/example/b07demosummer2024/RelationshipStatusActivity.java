@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
 import android.widget.*;
+
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 import com.google.firebase.auth.FirebaseAuth;

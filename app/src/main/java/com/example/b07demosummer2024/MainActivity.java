@@ -1,5 +1,8 @@
 package com.example.b07demosummer2024;
 
+import static androidx.core.content.ContextCompat.startActivity;
+
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;

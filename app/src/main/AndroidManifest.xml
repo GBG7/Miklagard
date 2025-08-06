@@ -28,7 +28,12 @@
         <activity android:name=".data.PinCreationActivity" android:exported="false" />
         <activity android:name=".ResetPwActivity" android:exported="false" />
         <activity android:name=".LoginActivity" android:exported="false" />
-        <activity android:name=".SignUpActivity" android:exported="true">
+        <activity android:name=".SignUpActivity" android:exported="true" />
+
+        <!-- Launcher -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -44,6 +49,5 @@
                 android:name="androidx.work.WorkManagerInitializer"
                 android:value="androidx.startup" />
         </provider>
-
     </application>
 </manifest>

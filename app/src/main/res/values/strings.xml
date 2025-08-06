@@ -6,6 +6,15 @@
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>
     <string name="button">Button</string>
+    <string name="tip_list">Tips</string>
+    <string name="scroller">Scroller</string>
+    <string name="spinner">Spinner</string>
+    <string name="manage_items">Manage Items</string>
+    <string name="support_connections">Support Connections</string>
+    <string name="add_item">Add Item</string>
+    <string name="edit_item">Edit Item</string>
+    <string name="delete_item">Delete Item</string>
+    <string name="update_item">Update Item</string>
 
     <!-- Reminders -->
     <string name="add_reminder">Add Reminder</string>
@@ -21,16 +30,6 @@
     <string name="reminder_channel_name">Reminder Notifications</string>
     <string name="reminder_notification_title">Friendly Reminder</string>
     <string name="reminder_notification_text">It’s time to review your plan.</string>
-
-    <!-- UI component labels -->
-    <string name="recyclerview">RecyclerView</string>
-    <string name="scroller">Scroller</string>
-    <string name="spinner">Spinner</string>
-    <string name="manage_items">Manage Items</string>
-    <string name="add_item">Add Item</string>
-    <string name="edit_item">Edit Item</string>
-    <string name="delete_item">Delete Item</string>
-    <string name="update_item">Update Item</string>
 
     <!-- Questionnaire -->
     <string name="questionnaire_scroll_area">Questionnaire area with selectable answers</string>
