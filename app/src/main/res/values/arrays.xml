@@ -1,0 +1,13 @@
+<resources>
+    <string-array name="reminder_frequencies">
+        <item>Daily</item>
+        <item>Weekly</item>
+        <item>Monthly</item>
+    </string-array>
+
+    <string-array name="categories_array">
+        <item>Warm-up</item>
+        <item>Relationship Status</item>
+        <item>Follow-up</item>
+    </string-array>
+</resources>
