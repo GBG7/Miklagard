@@ -5,10 +5,8 @@ import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
 import android.widget.*;
-import androidx.appcompat.app.AppCompatActivity;
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
-
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;

@@ -49,7 +49,7 @@ dependencies {
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-analytics")
     implementation("com.google.firebase:firebase-database")
-    implementation(libs.firebase.database) // if used separately
+    implementation(libs.firebase.database)
 
     // Security & Credential API
     implementation("androidx.security:security-crypto:1.1.0-alpha06")

@@ -5,6 +5,7 @@
     <string name="back">Back</string>
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>
+    <string name="button">Button</string>
 
     <!-- Reminders -->
     <string name="add_reminder">Add Reminder</string>
@@ -41,6 +42,12 @@
         <item>Post-separation</item>
     </string-array>
 
+    <string-array name="categories_array">
+        <item>Warm-up</item>
+        <item>Branch</item>
+        <item>Follow-up</item>
+    </string-array>
+
     <!-- Login -->
     <string name="title_activity_login">LoginActivity</string>
     <string name="prompt_email">Email</string>
@@ -51,7 +58,4 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be &gt;5 characters</string>
     <string name="login_failed">Login failed</string>
-
-    <!-- Misc -->
-    <string name="button">Button</string>
 </resources>
