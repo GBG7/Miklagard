@@ -21,7 +21,7 @@ import android.content.Intent;
 import android.widget.VideoView;
 
 
-public class SignUpActivity extends AppCompatActivity {
+public class SignUpActivity extends BaseActivity {
     private FirebaseAuth mAuth;
     private static final String TAG = "SignUpActivity";
     private EditText emailField;
@@ -35,7 +35,6 @@ public class SignUpActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_signup);
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -115,5 +114,9 @@ public class SignUpActivity extends AppCompatActivity {
         Intent intent = new Intent(SignUpActivity.this,
                 com.example.b07demosummer2024.ResetPwActivity.class);
         startActivity(intent);
+    }
+    @Override
+    protected int getLayoutResourceId() {
+        return R.layout.activity_signup;
     }
 }

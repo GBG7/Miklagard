@@ -1,70 +1,57 @@
 package com.example.b07demosummer2024;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
-import android.content.Context;
-import android.content.Intent;
+import android.app.TimePickerDialog;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.Calendar;
+import java.util.*;
 
-public class ReminderActivity extends AppCompatActivity {
+public class ReminderActivity extends BaseActivity {
     private Spinner frequencySpinner;
-    private TimePicker timePicker;
-    private Button setReminderBtn;
+    private Button timeButton, saveButton;
+    private TextView selectedTimeText;
+    private int selectedHour = -1, selectedMinute = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_reminder);
 
-        frequencySpinner = findViewById(R.id.frequencySpinner);
-        timePicker = findViewById(R.id.timePicker);
-        setReminderBtn = findViewById(R.id.setReminderBtn);
+        frequencySpinner = findViewById(R.id.spinnerFrequency);
+        timeButton = findViewById(R.id.buttonTime);
+        saveButton = findViewById(R.id.buttonSaveReminder);
+        selectedTimeText = findViewById(R.id.textSelectedTime);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.reminder_frequencies, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         frequencySpinner.setAdapter(adapter);
 
-        setReminderBtn.setOnClickListener(v -> setReminder());
+        timeButton.setOnClickListener(v -> {
+            Calendar now = Calendar.getInstance();
+            TimePickerDialog dialog = new TimePickerDialog(this, (view, hourOfDay, minute) -> {
+                selectedHour = hourOfDay;
+                selectedMinute = minute;
+                selectedTimeText.setText(String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute));
+            }, now.get(Calendar.HOUR_OF_DAY), now.get(Calendar.MINUTE), true);
+            dialog.show();
+        });
+
+        saveButton.setOnClickListener(v -> {
+            if (selectedHour == -1 || selectedMinute == -1) {
+                Toast.makeText(this, "Please select a time.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            String frequency = frequencySpinner.getSelectedItem().toString();
+            String id = UUID.randomUUID().toString();
+            Reminder reminder = new Reminder(id, frequency, selectedHour + ":" + selectedMinute);
+            ReminderScheduler.scheduleReminder(this, reminder);
+            Toast.makeText(this, "Reminder set", Toast.LENGTH_SHORT).show();
+        });
     }
-
-    private void setReminder() {
-        String frequency = frequencySpinner.getSelectedItem().toString();
-        int hour = timePicker.getHour();
-        int minute = timePicker.getMinute();
-
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY, hour);
-        calendar.set(Calendar.MINUTE, minute);
-        calendar.set(Calendar.SECOND, 0);
-
-        Intent intent = new Intent(this, ReminderReceiver.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
-        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-
-        long intervalMillis = getIntervalMillis(frequency);
-
-        if (alarmManager != null) {
-            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), intervalMillis, pendingIntent);
-            Toast.makeText(this, "Reminder set for " + frequency, Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    private long getIntervalMillis(String frequency) {
-        switch (frequency) {
-            case "Daily":
-                return AlarmManager.INTERVAL_DAY;
-            case "Weekly":
-                return AlarmManager.INTERVAL_DAY * 7;
-            case "Monthly":
-                return AlarmManager.INTERVAL_DAY * 30;
-            default:
-                return AlarmManager.INTERVAL_DAY;
-        }
+    @Override
+    protected int getLayoutResourceId() {
+        return R.layout.activity_reminder;
     }
 }

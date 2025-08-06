@@ -29,7 +29,7 @@ import androidx.annotation.NonNull;
 //import androidx.core.view.EdgeToEdge;
 
 
-public class ResetPwActivity extends AppCompatActivity {
+public class ResetPwActivity extends BaseActivity {
     private Button resetPWButton;
     private TextView confirmText;
     private EditText email;
@@ -38,7 +38,6 @@ public class ResetPwActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_reset_pw);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -77,5 +76,9 @@ public class ResetPwActivity extends AppCompatActivity {
                         }
                     }
                 });
+    }
+    @Override
+    protected int getLayoutResourceId() {
+        return R.layout.activity_reset_pw;
     }
 }

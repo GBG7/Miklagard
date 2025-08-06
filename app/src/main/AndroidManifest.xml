@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.b07demosummer2024">
 
-    <!-- Permissions -->
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -14,59 +13,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.B07DemoSummer2024">
 
-        <!-- Reminder Broadcast Receiver -->
         <receiver
             android:name=".ReminderReceiver"
-            android:exported="false" />
+            android:exported="true" />
 
-        <!-- Reminder Setup UI -->
-        <activity
-            android:name=".ReminderActivity"
-            android:exported="false" />
-
-        <!-- Tips Page -->
-        <activity
-            android:name=".TipsActivity"
-            android:exported="false" />
-
-        <!-- Questionnaire Page -->
-        <activity
-            android:name=".RelationshipStatusActivity"
-            android:exported="false" />
-
-        <!-- Home (Main Hub) -->
-        <activity
-            android:name=".HomeActivity"
-            android:exported="false" />
-
-        <!-- PIN Setup -->
-        <activity
-            android:name=".data.PinCreationActivity"
-            android:exported="false" />
-
-        <!-- Reset Password -->
-        <activity
-            android:name=".ResetPwActivity"
-            android:exported="false"
-            android:label="ResetPwActivity" />
-
-        <!-- Login -->
-        <activity
-            android:name=".LoginActivity"
-            android:exported="false"
-            android:label="@string/title_activity_login" />
-
-        <!-- Sign Up (Launch Activity) -->
-        <activity
-            android:name=".SignUpActivity"
-            android:exported="true">
+        <activity android:name=".ReminderActivity" android:exported="false" />
+        <activity android:name=".TipsActivity" android:exported="false" />
+        <activity android:name=".RelationshipStatusActivity" android:exported="false" />
+        <activity android:name=".HomeActivity" android:exported="false" />
+        <activity android:name=".data.PinCreationActivity" android:exported="false" />
+        <activity android:name=".ResetPwActivity" android:exported="false" />
+        <activity android:name=".LoginActivity" android:exported="false" />
+        <activity android:name=".SignUpActivity" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <!-- Required for WorkManager -->
         <provider
             android:name="androidx.startup.InitializationProvider"
             android:authorities="${applicationId}.androidx-startup"
@@ -75,6 +39,5 @@
                 android:name="androidx.work.WorkManagerInitializer"
                 android:value="androidx.startup" />
         </provider>
-
     </application>
 </manifest>

@@ -6,39 +6,44 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+
 import androidx.core.app.NotificationCompat;
 
 public class NotificationUtils {
     private static final String CHANNEL_ID = "reminder_channel";
+    private static final int NOTIFICATION_ID = 1001;
 
-    public static void showReminderNotification(Context context, Intent intent) {
-        createChannel(context);
+    public static void showReminderNotification(Context context) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel(
+                    CHANNEL_ID,
+                    "Reminder Notifications",
+                    NotificationManager.IMPORTANCE_HIGH
+            );
+            channel.setDescription("Reminders to update your safety plan");
 
+            NotificationManager manager = context.getSystemService(NotificationManager.class);
+            if (manager != null) manager.createNotificationChannel(channel);
+        }
+
+        Intent intent = new Intent(context, LoginActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         PendingIntent pendingIntent = PendingIntent.getActivity(
-                context, 0, intent, PendingIntent.FLAG_IMMUTABLE);
+                context,
+                0,
+                intent,
+                PendingIntent.FLAG_IMMUTABLE
+        );
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID)
-                .setSmallIcon(R.drawable.ic_notification) // make sure you have this icon
+                .setSmallIcon(R.drawable.ic_launcher_foreground)
                 .setContentTitle("Reminder")
-                .setContentText("It’s time to check your safety plan.")
-                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setContentText("Time to review your safety plan")
                 .setContentIntent(pendingIntent)
-                .setAutoCancel(true);
+                .setAutoCancel(true)
+                .setPriority(NotificationCompat.PRIORITY_HIGH);
 
         NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-        manager.notify(1, builder.build());
-    }
-
-    private static void createChannel(Context context) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            CharSequence name = "Reminders";
-            String description = "Channel for plan review reminders";
-            int importance = NotificationManager.IMPORTANCE_HIGH;
-            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
-            channel.setDescription(description);
-
-            NotificationManager notificationManager = context.getSystemService(NotificationManager.class);
-            notificationManager.createNotificationChannel(channel);
-        }
+        if (manager != null) manager.notify(NOTIFICATION_ID, builder.build());
     }
 }

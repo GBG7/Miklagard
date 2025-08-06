@@ -9,12 +9,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.io.InputStream;
 import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
-public class RelationshipStatusActivity extends AppCompatActivity {
+public class RelationshipStatusActivity extends BaseActivity {
 
     private LinearLayout questionContainer;
     private Map<String, List<Question>> categorizedQuestions = new LinkedHashMap<>();
@@ -31,7 +36,6 @@ public class RelationshipStatusActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_relationship_status);
         questionContainer = findViewById(R.id.questionContainer);
         loadQuestionsFromJson();
         startQuestionnaire();
@@ -107,7 +111,7 @@ public class RelationshipStatusActivity extends AppCompatActivity {
                 showNextFollowupQuestion();
             });
         } else {
-            goToTipsPage();
+            goToHomePage();
         }
     }
 
@@ -126,25 +130,19 @@ public class RelationshipStatusActivity extends AppCompatActivity {
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 spinner.setAdapter(adapter);
                 questionContainer.addView(spinner);
-                spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    boolean isFirst = true;
-                    @Override
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        if (isFirst) {
-                            isFirst = false;
-                            return;
-                        }
-                        String selected = options.get(position);
-                        if (question.getText().toLowerCase().contains("relationship status")) {
-                            selectedStatus = selected;
-                        }
-                        spinner.setEnabled(false);
-                        onAnswered.run();
-                    }
 
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parent) {}
+                Button submitSpinner = new Button(this);
+                submitSpinner.setText("Submit");
+                submitSpinner.setOnClickListener(v -> {
+                    String selected = (String) spinner.getSelectedItem();
+                    if (question.getText().toLowerCase().contains("relationship status")) {
+                        selectedStatus = selected;
+                    }
+                    spinner.setEnabled(false);
+                    submitSpinner.setEnabled(false);
+                    onAnswered.run();
                 });
+                questionContainer.addView(submitSpinner);
                 break;
 
             case "checkbox":
@@ -196,27 +194,20 @@ public class RelationshipStatusActivity extends AppCompatActivity {
                 compoundSpinner.setAdapter(compAdapter);
                 questionContainer.addView(compoundSpinner);
 
-                compoundSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    boolean isFirst = true;
-                    @Override
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        if (isFirst) {
-                            isFirst = false;
-                            return;
-                        }
-                        compoundSpinner.setEnabled(false);
-                        String selected = compoundOptions.get(position);
-                        if (question.getFollowup() != null && question.getFollowup().containsKey(selected)) {
-                            Question follow = question.getFollowup().get(selected);
-                            displayQuestion(follow, onAnswered);
-                        } else {
-                            onAnswered.run();
-                        }
+                Button compSubmit = new Button(this);
+                compSubmit.setText("Submit");
+                compSubmit.setOnClickListener(v -> {
+                    compoundSpinner.setEnabled(false);
+                    compSubmit.setEnabled(false);
+                    String selected = (String) compoundSpinner.getSelectedItem();
+                    if (question.getFollowup() != null && question.getFollowup().containsKey(selected)) {
+                        Question follow = question.getFollowup().get(selected);
+                        displayQuestion(follow, onAnswered);
+                    } else {
+                        onAnswered.run();
                     }
-
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parent) {}
                 });
+                questionContainer.addView(compSubmit);
                 break;
 
             default:
@@ -225,9 +216,29 @@ public class RelationshipStatusActivity extends AppCompatActivity {
         }
     }
 
-    private void goToTipsPage() {
-        Intent intent = new Intent(RelationshipStatusActivity.this, TipsActivity.class);
-        startActivity(intent);
-        finish(); // Prevent back-navigation to questionnaire
+    private void goToHomePage() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            String uid = user.getUid();
+            DatabaseReference ref = FirebaseDatabase.getInstance().getReference("responses").child(uid);
+            ref.setValue(true).addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    Intent intent = new Intent(RelationshipStatusActivity.this, HomeActivity.class);
+                    startActivity(intent);
+                    finish();
+                } else {
+                    Toast.makeText(this, "Error saving questionnaire progress.", Toast.LENGTH_SHORT).show();
+                }
+            });
+        } else {
+            Toast.makeText(this, "User not signed in.", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(RelationshipStatusActivity.this, LoginActivity.class));
+            finish();
+        }
+    }
+
+    @Override
+    protected int getLayoutResourceId() {
+        return R.layout.activity_relationship_status;
     }
 }
