@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -12,16 +14,35 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.B07DemoSummer2024"
         tools:targetApi="31">
+        <activity
+            android:name=".data.PinCreationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ResetPwActivity"
+            android:exported="false"
+            android:label="ResetPwActivity" />
+        <activity
+            android:name=".SignUpActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-        <!-- TEMP: Launch RelationshipStatusActivity for testing -->
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false"
+            android:label="@string/title_activity_login" /> <!-- TEMP: Launch RelationshipStatusActivity for testing -->
         <activity
             android:name=".RelationshipStatusActivity"
             android:exported="true">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="RelationshipStatusActivity" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
+
 </manifest>
