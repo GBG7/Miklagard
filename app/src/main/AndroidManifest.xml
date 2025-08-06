@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.b07demosummer2024">
 
     <!-- Permissions -->
@@ -27,12 +28,12 @@
         <activity android:name=".HomeActivity" android:exported="false" />
         <activity android:name=".data.PinCreationActivity" android:exported="false" />
         <activity android:name=".ResetPwActivity" android:exported="false" />
-        <activity android:name=".LoginActivity" android:exported="false" />
+        <activity android:name=".MainActivity" android:exported="false" />
         <activity android:name=".SignUpActivity" android:exported="true" />
 
         <!-- Launcher -->
         <activity
-            android:name=".MainActivity"
+            android:name=".LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
