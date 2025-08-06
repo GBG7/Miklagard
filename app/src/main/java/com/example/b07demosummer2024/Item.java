@@ -18,6 +18,10 @@ public class Item {
         this.description = description;
     }
 
+    public Item(String description) {
+        this.description = description;
+    }
+
     // Getters and setters
     public String getId() { return id; }
     public void setId(String id) { this.id = id; }
