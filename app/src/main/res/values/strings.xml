@@ -10,11 +10,18 @@
     <string name="scroller">Scroller</string>
     <string name="spinner">Spinner</string>
     <string name="manage_items">Manage Items</string>
-    <string name="support_connections">Support Connections</string>
     <string name="add_item">Add Item</string>
     <string name="edit_item">Edit Item</string>
     <string name="delete_item">Delete Item</string>
     <string name="update_item">Update Item</string>
+
+    <!-- Emergency Information -->
+    <string name="edit_emergency_information">Edit Emergency Information</string>
+    <string name="options_menu_description">pop-up menu for editing, deleting, and downloading (Document only) information being displayed</string>
+    <string name="default_text_for_no_file_selected">No file selected yet.</string>
+
+    <!-- Support Connections -->
+    <string name="support_connections">Support Connections</string>
 
     <!-- Reminders -->
     <string name="add_reminder">Add Reminder</string>
@@ -35,10 +42,18 @@
     <string name="questionnaire_scroll_area">Questionnaire area with selectable answers</string>
     <string name="select_relationship_status">Select Your Relationship Status:</string>
 
+    <!-- Questionnaire Arrays -->
     <string-array name="relationship_status_options">
         <item>Still in a relationship</item>
         <item>Planning to leave</item>
         <item>Post-separation</item>
+    </string-array>
+
+    <string-array name="emergency_information_categories_array">
+        <item>Document to Pack</item>
+        <item>Emergency Contact</item>
+        <item>Safe Location</item>
+        <item>Medication</item>
     </string-array>
 
     <!-- Login -->

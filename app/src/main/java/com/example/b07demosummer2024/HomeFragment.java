@@ -5,17 +5,29 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 public class HomeFragment extends Fragment {
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_home_fragment, container, false);
 
+        // Emergency Info button from Haowen's feature
+        Button buttonEditEmergencyInformation = view.findViewById(R.id.buttonEditEmergencyInformation);
+        buttonEditEmergencyInformation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadFragment(new MedicationRecyclerViewFragment());
+            }
+        });
+
+        // Other buttons from development branch
         Button buttonResourcesRecyclerView = view.findViewById(R.id.buttonSupportRecyclerView);
         Button buttonTipsRecyclerView = view.findViewById(R.id.buttonTipsRecyclerView);
         Button buttonScroller = view.findViewById(R.id.buttonScroller);
@@ -24,7 +36,9 @@ public class HomeFragment extends Fragment {
 
         buttonResourcesRecyclerView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) { loadFragment(new SupportRecyclerViewFragment()); }
+            public void onClick(View v) {
+                loadFragment(new SupportRecyclerViewFragment());
+            }
         });
 
         buttonTipsRecyclerView.setOnClickListener(new View.OnClickListener() {
@@ -50,7 +64,9 @@ public class HomeFragment extends Fragment {
 
         buttonManageItems.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) { loadFragment(new ManageItemsFragment());}
+            public void onClick(View v) {
+                loadFragment(new ManageItemsFragment());
+            }
         });
 
         return view;
