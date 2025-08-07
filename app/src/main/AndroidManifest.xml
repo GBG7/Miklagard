@@ -30,10 +30,12 @@
         <activity android:name=".ResetPwActivity" android:exported="false" />
         <activity android:name=".MainActivity" android:exported="false" />
         <activity android:name=".SignUpActivity" android:exported="true" />
+        <activity android:name=".LoginActivity" android:exported="true" />
+        <activity android:name=".PinCreationActivity" android:exported="false" />
 
         <!-- Launcher -->
         <activity
-            android:name=".LoginActivity"
+            android:name=".WelcomeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
