@@ -18,7 +18,7 @@ public class ScrollerFragment extends Fragment {
 
         TextView textView = view.findViewById(R.id.textView);
         StringBuilder text = new StringBuilder();
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 50; i++) {
             text.append("Line ").append(i + 1).append("\n");
         }
         textView.setText(text.toString());
