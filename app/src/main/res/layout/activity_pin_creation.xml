@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/pinCreationLayout"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="24dp"
@@ -21,9 +21,19 @@
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Enter a 4-digit PIN to secure your safety plan"
+        android:text="Enter a 4/6-digit PIN to secure your safety plan"
         android:textSize="16sp"
-        android:layout_marginBottom="24dp"/>
+        android:layout_marginBottom="12dp"/>
+
+    <!-- status / errors -->
+    <TextView
+        android:id="@+id/textStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="14sp"
+        android:visibility="gone"
+        android:layout_marginBottom="12dp"/>
 
     <EditText
         android:id="@+id/editTextNumberPassword2"
@@ -31,7 +41,6 @@
         android:layout_height="wrap_content"
         android:hint="Enter PIN"
         android:inputType="numberPassword"
-        android:maxLength="4"
         android:layout_marginBottom="24dp"/>
 
     <Button
@@ -39,5 +48,4 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Continue"/>
-
 </LinearLayout>

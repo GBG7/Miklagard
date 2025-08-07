@@ -17,6 +17,7 @@ public class LoginActivity extends BaseActivity {
 
     private EditText emailEditText, passwordEditText, pinEditText;
     private Button loginButton;
+    private Button forgotpwbutton;
     private RadioGroup radioGroup;
     private RadioButton radioEmail, radioPin;
 
@@ -37,6 +38,7 @@ public class LoginActivity extends BaseActivity {
         radioGroup = findViewById(R.id.radioGroup);
         radioEmail = findViewById(R.id.radioEmail);
         radioPin = findViewById(R.id.radioPin);
+        forgotpwbutton = findViewById(R.id.buttonForgotPassword);
 
         toggleLoginInputs();
 
@@ -49,8 +51,12 @@ public class LoginActivity extends BaseActivity {
                 loginWithPin();
             }
         });
+        forgotpwbutton.setOnClickListener(v-> resetPW());
     }
 
+    private void resetPW(){
+        startActivity(new Intent(this, ResetPwActivity.class));
+    }
     private void toggleLoginInputs() {
         if (radioEmail.isChecked()) {
             emailEditText.setVisibility(View.VISIBLE);
@@ -91,10 +97,13 @@ public class LoginActivity extends BaseActivity {
             return;
         }
 
-        LoginManager.getInstance().checkPin(pin,
+        LoginManager.getInstance().checkPin(
+                this,
+                pin,
                 uid -> checkQuestionnaireCompletion(uid),
                 errorMsg -> Toast.makeText(LoginActivity.this, errorMsg, Toast.LENGTH_LONG).show()
         );
+
     }
 
     private void checkQuestionnaireCompletion(String uid) {

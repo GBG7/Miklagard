@@ -58,5 +58,13 @@
             android:text="Log In"
             android:layout_marginTop="16dp" />
 
+        <!-- Forgot Password button -->
+        <Button
+            android:id="@+id/buttonForgotPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Forgot Password?"
+            android:layout_marginTop="8dp" />
+
     </LinearLayout>
 </ScrollView>
