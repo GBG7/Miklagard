@@ -7,6 +7,14 @@ import android.content.Intent;
 public class ReminderReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
-        NotificationUtils.showReminderNotification(context);
+        String message = intent.getStringExtra("message");
+        String reminderId = intent.getStringExtra("reminderId");
+
+        NotificationUtils.showNotification(
+                context,
+                "Safety Plan Reminder",
+                message != null ? message : "Check your safety plan.",
+                reminderId.hashCode()
+        );
     }
 }

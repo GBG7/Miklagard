@@ -31,6 +31,7 @@ public class RelationshipStatusActivity extends BaseActivity {
     private int followupIndex = 0;
 
     private String selectedStatus = null;
+    private final Map<String, String> userAnswers = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,7 +111,7 @@ public class RelationshipStatusActivity extends BaseActivity {
                 showNextFollowupQuestion();
             });
         } else {
-            goToHomePage();
+            saveResponsesAndRedirectToTips();
         }
     }
 
@@ -137,6 +138,7 @@ public class RelationshipStatusActivity extends BaseActivity {
                     if (question.getText().toLowerCase().contains("relationship status")) {
                         selectedStatus = selected;
                     }
+                    userAnswers.put(question.getId(), selected);
                     spinner.setEnabled(false);
                     submitSpinner.setEnabled(false);
                     onAnswered.run();
@@ -157,7 +159,14 @@ public class RelationshipStatusActivity extends BaseActivity {
                 Button cbSubmit = new Button(this);
                 cbSubmit.setText("Submit");
                 cbSubmit.setOnClickListener(v -> {
-                    for (CheckBox cb : checkBoxes) cb.setEnabled(false);
+                    List<String> selected = new ArrayList<>();
+                    for (CheckBox cb : checkBoxes) {
+                        cb.setEnabled(false);
+                        if (cb.isChecked()) {
+                            selected.add(cb.getText().toString());
+                        }
+                    }
+                    userAnswers.put(question.getId(), String.join(",", selected));
                     cbSubmit.setEnabled(false);
                     onAnswered.run();
                 });
@@ -176,7 +185,9 @@ public class RelationshipStatusActivity extends BaseActivity {
                 Button textSubmit = new Button(this);
                 textSubmit.setText("Submit");
                 textSubmit.setOnClickListener(v -> {
-                    if (!et.getText().toString().trim().isEmpty()) {
+                    String response = et.getText().toString().trim();
+                    if (!response.isEmpty()) {
+                        userAnswers.put(question.getId(), response);
                         et.setEnabled(false);
                         textSubmit.setEnabled(false);
                         onAnswered.run();
@@ -196,9 +207,10 @@ public class RelationshipStatusActivity extends BaseActivity {
                 Button compSubmit = new Button(this);
                 compSubmit.setText("Submit");
                 compSubmit.setOnClickListener(v -> {
+                    String selected = (String) compoundSpinner.getSelectedItem();
+                    userAnswers.put(question.getId(), selected);
                     compoundSpinner.setEnabled(false);
                     compSubmit.setEnabled(false);
-                    String selected = (String) compoundSpinner.getSelectedItem();
                     if (question.getFollowup() != null && question.getFollowup().containsKey(selected)) {
                         Question follow = question.getFollowup().get(selected);
                         displayQuestion(follow, onAnswered);
@@ -215,14 +227,14 @@ public class RelationshipStatusActivity extends BaseActivity {
         }
     }
 
-    private void goToHomePage() {
+    private void saveResponsesAndRedirectToTips() {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
             String uid = user.getUid();
             DatabaseReference ref = FirebaseDatabase.getInstance().getReference("responses").child(uid);
-            ref.setValue(true).addOnCompleteListener(task -> {
+            ref.setValue(userAnswers).addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
-                    Intent intent = new Intent(RelationshipStatusActivity.this, HomeActivity.class);
+                    Intent intent = new Intent(RelationshipStatusActivity.this, TipsActivity.class);
                     startActivity(intent);
                     finish();
                 } else {
