@@ -37,16 +37,16 @@
         <activity android:name=".TipsActivity" android:exported="false" />
         <activity android:name=".RelationshipStatusActivity" android:exported="false" />
         <activity android:name=".HomeActivity" android:exported="false" />
-        <activity android:name=".data.PinCreationActivity" android:exported="false" />
+        <activity android:name=".PinCreationActivity" android:exported="false" />
         <activity android:name=".ResetPwActivity" android:exported="false" />
         <activity android:name=".MainActivity" android:exported="false" />
-        <activity android:name=".SignUpActivity" android:exported="true" />
+<!--        <activity android:name=".SignUpActivity" android:exported="true" />-->
         <activity android:name=".LoginActivity" android:exported="true" />
-        <activity android:name=".PinCreationActivity" android:exported="false" />
+<!--        <activity android:name=".PinCreationActivity" android:exported="false" />-->
 
         <!-- Launcher Activity -->
         <activity
-            android:name=".WelcomeActivity"
+            android:name=".SignUpActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

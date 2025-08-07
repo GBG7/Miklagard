@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/root_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!-- Placeholder where child layout will be injected -->
     <FrameLayout
         android:id="@+id/content_frame"
         android:layout_width="match_parent"
@@ -19,11 +19,24 @@
         android:layout_margin="16dp"
         android:backgroundTint="@android:color/holo_red_light" />
 
+    <!-- Needed for ReminderActivity and others -->
     <FrameLayout
         android:id="@+id/base_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/btnExit"
         android:layout_marginTop="16dp" />
+
+    <!-- Emergency safety notice -->
+    <TextView
+        android:id="@+id/safetyDisclaimer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="If you are in danger, call 911. This app is not a replacement for emergency services."
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="10sp"
+        android:padding="12dp"
+        android:gravity="center"
+        android:layout_gravity="bottom"
+        android:background="#11FF0000" />
 
 </FrameLayout>
