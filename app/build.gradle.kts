@@ -5,28 +5,36 @@ plugins {
 
 android {
     namespace = "com.example.b07demosummer2024"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.example.b07demosummer2024"
-        minSdk = 26
-        targetSdk = 34
+        minSdk = 24 // Chose the lower common value for safety across devices
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
         release {
             isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
     }
+
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
+
+    buildFeatures {
+        viewBinding = true
+    }
+
     packagingOptions {
         resources {
             excludes += "google/api/logging.proto"
@@ -46,17 +54,39 @@ configurations.all {
 }
 
 dependencies {
-
+    // Core libraries
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
+    implementation(libs.core.ktx)
+
+    // Firebase & Google Services
+    implementation(platform(libs.firebase.bom))
+    implementation("com.google.firebase:firebase-auth")
+    implementation("com.google.firebase:firebase-analytics")
+    implementation("com.google.firebase:firebase-database")
     implementation(libs.firebase.database)
-    implementation("com.google.code.gson:gson:2.10.1")
     implementation(libs.firebase.firestore)
     implementation(libs.firebase.storage)
+
+    // Security & Credential API
+    implementation("androidx.security:security-crypto:1.1.0-alpha06")
+    implementation(libs.credentials)
+    implementation(libs.credentials.play.services.auth)
+    implementation(libs.googleid)
+
+    // Background work
+    implementation(libs.workmanager)
+
+    // JSON Parsing
+    implementation("com.google.code.gson:gson:2.10.1")
+
+    // Testing
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+
+    // Firebase BOM (explicit version for Firestore/Storage support)
     implementation(platform("com.google.firebase:firebase-bom:34.0.0"))
 }
