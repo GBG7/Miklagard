@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!-- Placeholder where child layout will be injected -->
     <FrameLayout
         android:id="@+id/content_frame"
         android:layout_width="match_parent"
@@ -18,12 +19,4 @@
         android:layout_gravity="top|end"
         android:layout_margin="16dp"
         android:backgroundTint="@android:color/holo_red_light" />
-
-    <FrameLayout
-        android:id="@+id/base_content"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/btnExit"
-        android:layout_marginTop="16dp" />
-
 </FrameLayout>
