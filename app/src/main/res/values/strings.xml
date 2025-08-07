@@ -56,12 +56,6 @@
         <item>Medication</item>
     </string-array>
 
-    <string-array name="frequency_array">
-        <item>Daily</item>
-        <item>Weekly</item>
-        <item>Monthly</item>
-    </string-array>
-
     <!-- Login -->
     <string name="title_activity_login">LoginActivity</string>
     <string name="prompt_email">Email</string>

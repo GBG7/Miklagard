@@ -11,7 +11,7 @@ import android.widget.FrameLayout;
 import androidx.annotation.LayoutRes;
 import androidx.appcompat.app.AppCompatActivity;
 
-    public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity {
     protected abstract @LayoutRes int getLayoutResourceId();
 
     @Override
