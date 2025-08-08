@@ -24,6 +24,7 @@
         <!-- Activities -->
         <activity android:name=".ReminderActivity" android:exported="false" />
         <activity android:name=".TipsActivity" android:exported="false" />
+        <activity android:name=".SupportActivity" android:exported="false" />
         <activity android:name=".RelationshipStatusActivity" android:exported="false" />
         <activity android:name=".HomeActivity" android:exported="false" />
         <activity android:name=".PinCreationActivity" android:exported="false" />

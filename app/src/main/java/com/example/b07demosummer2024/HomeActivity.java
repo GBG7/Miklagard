@@ -47,9 +47,8 @@ public class HomeActivity extends BaseActivity {
         btnUpdatePlan.setOnClickListener(v ->
                 startActivity(new Intent(HomeActivity.this, RelationshipStatusActivity.class)));
 
-        btnEmergency.setOnClickListener(v -> {
-            // Placeholder for emergency info
-        });
+        btnEmergency.setOnClickListener(v -> 
+                startActivity(new Intent(HomeActivity.this, SupportActivity.class)));
 
         btnExit.setOnClickListener(v -> finishAffinity());
     }
