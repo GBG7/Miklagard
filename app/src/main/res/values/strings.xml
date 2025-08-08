@@ -1,30 +1,69 @@
- <resources>
+<resources>
     <string name="app_name">B07 Demo Summer 2024</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="delete_item">Delete Item</string>
-    <string name="add_item">Add Item</string>
+
+    <!-- General UI -->
     <string name="back">Back</string>
-    <string name="recyclerview">RecyclerView</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="button">Button</string>
+    <string name="tip_list">Tips</string>
     <string name="scroller">Scroller</string>
     <string name="spinner">Spinner</string>
     <string name="manage_items">Manage Items</string>
-    <string name="edit_emergency_information">Edit Emergency Information</string>
-     <string name="options_menu_description">pop-up menu for editing, deleting, and downloading (Document only) information beind displayed</string>
-     <string name="default_text_for_no_file_selected">No file selected yet.</string>
+    <string name="add_item">Add Item</string>
+    <string name="edit_item">Edit Item</string>
+    <string name="delete_item">Delete Item</string>
+    <string name="update_item">Update Item</string>
 
-     <!-- TODO: Change category names -->
-    <string-array name="categories_array">
-        <item>Warm-up</item>
-        <item>Branch</item>
-        <item>Follow-up</item>
+    <!-- Emergency Information -->
+    <string name="edit_emergency_information">Edit Emergency Information</string>
+    <string name="options_menu_description">pop-up menu for editing, deleting, and downloading (Document only) information being displayed</string>
+    <string name="default_text_for_no_file_selected">No file selected yet.</string>
+
+    <!-- Support Connections -->
+    <string name="support_connections">Support Connections</string>
+
+    <!-- Reminders -->
+    <string name="add_reminder">Add Reminder</string>
+    <string name="edit_reminder">Edit Reminder</string>
+    <string name="delete_reminder">Delete Reminder</string>
+    <string name="reminder_time">Reminder Time (e.g. 08:00)</string>
+    <string name="reminder_frequency">Reminder Frequency</string>
+    <string name="daily">Daily</string>
+    <string name="weekly">Weekly</string>
+    <string name="monthly">Monthly</string>
+
+    <!-- Notification -->
+    <string name="reminder_channel_name">Reminder Notifications</string>
+    <string name="reminder_notification_title">Friendly Reminder</string>
+    <string name="reminder_notification_text">It’s time to review your plan.</string>
+
+    <!-- Questionnaire -->
+    <string name="questionnaire_scroll_area">Questionnaire area with selectable answers</string>
+    <string name="select_relationship_status">Select Your Relationship Status:</string>
+
+    <!-- Questionnaire Arrays -->
+    <string-array name="relationship_status_options">
+        <item>Still in a relationship</item>
+        <item>Planning to leave</item>
+        <item>Post-separation</item>
     </string-array>
 
-     <string-array name="emergency_information_categories_array">
-         <item>Document to Pack</item>
-         <item>Emergency Contact</item>
-         <item>Safe Location</item>
-         <item>Medication</item>
-     </string-array>
+    <string-array name="emergency_information_categories_array">
+        <item>Document to Pack</item>
+        <item>Emergency Contact</item>
+        <item>Safe Location</item>
+        <item>Medication</item>
+    </string-array>
 
+    <!-- Login -->
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">Welcome!</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be &gt;5 characters</string>
+    <string name="login_failed">Login failed</string>
 </resources>
