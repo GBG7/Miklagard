@@ -6,14 +6,12 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.*;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class HomeActivity extends BaseActivity {
 
@@ -28,7 +26,6 @@ public class HomeActivity extends BaseActivity {
         FirebaseUser user = mAuth.getCurrentUser();
 
         if (user == null) {
-            // Redirect to login if not signed in
             startActivity(new Intent(this, LoginActivity.class));
             finish();
             return;
@@ -50,9 +47,8 @@ public class HomeActivity extends BaseActivity {
         btnUpdatePlan.setOnClickListener(v ->
                 startActivity(new Intent(HomeActivity.this, RelationshipStatusActivity.class)));
 
-        btnEmergency.setOnClickListener(v -> {
-            // Optionally add emergency info here
-        });
+        btnEmergency.setOnClickListener(v -> 
+                startActivity(new Intent(HomeActivity.this, SupportActivity.class)));
 
         btnExit.setOnClickListener(v -> finishAffinity());
     }
@@ -69,18 +65,20 @@ public class HomeActivity extends BaseActivity {
                     }
                 }
 
-                if (tipsList.isEmpty()) {
-                    Toast.makeText(HomeActivity.this, "No tips found for your responses.", Toast.LENGTH_SHORT).show();
-                } else {
-                    Intent intent = new Intent(HomeActivity.this, TipsActivity.class);
-                    intent.putStringArrayListExtra("tips", tipsList);
-                    startActivity(intent);
-                }
+                // Always proceed to TipsActivity regardless of tips found
+                Intent intent = new Intent(HomeActivity.this, TipsActivity.class);
+                intent.putStringArrayListExtra("tips", tipsList);
+                startActivity(intent);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Toast.makeText(HomeActivity.this, "Failed to load tips: " + error.getMessage(), Toast.LENGTH_LONG).show();
+
+                // Still proceed with empty tips
+                Intent intent = new Intent(HomeActivity.this, TipsActivity.class);
+                intent.putStringArrayListExtra("tips", new ArrayList<>());
+                startActivity(intent);
             }
         });
     }
