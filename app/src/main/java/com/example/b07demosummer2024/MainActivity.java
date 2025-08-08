@@ -25,4 +25,9 @@ public class MainActivity extends BaseActivity {
             }
         });
     }
+
+    @Override
+    protected int getLayoutResourceId() {
+        return R.layout.activity_main;
+    }
 }
