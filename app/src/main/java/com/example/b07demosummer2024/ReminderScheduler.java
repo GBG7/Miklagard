@@ -9,12 +9,31 @@ import android.provider.Settings;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
+import android.Manifest;
+import android.content.pm.PackageManager;
 
 import java.util.Calendar;
 
 public class ReminderScheduler {
 
     public static void scheduleReminder(@NonNull Context context, @NonNull Reminder reminder) {
+        // 🔒 Check NOTIFICATION permission for Android 13+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS)
+                    != PackageManager.PERMISSION_GRANTED) {
+                Intent intent = new Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS)
+                        .putExtra(Settings.EXTRA_APP_PACKAGE, context.getPackageName());
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
+                Toast.makeText(context, "Please enable notification permission", Toast.LENGTH_LONG).show();
+                return;
+            }
+        }
+
+        // 🔒 Check ALARM permission for Android 12+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
             if (!alarmManager.canScheduleExactAlarms()) {
@@ -54,20 +73,16 @@ public class ReminderScheduler {
         }
     }
 
-    public static void cancel(@NonNull Context context, @NonNull String reminderId) {
-        AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+    public static void cancel(Context context, Reminder reminder) {
         Intent intent = new Intent(context, ReminderReceiver.class);
-        intent.putExtra("reminder_id", reminderId);
-
         PendingIntent pendingIntent = PendingIntent.getBroadcast(
                 context,
-                reminderId.hashCode(),
+                reminder.getId().hashCode(),
                 intent,
                 PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE
         );
 
-        if (alarmManager != null) {
-            alarmManager.cancel(pendingIntent);
-        }
+        AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+        alarmManager.cancel(pendingIntent);
     }
 }

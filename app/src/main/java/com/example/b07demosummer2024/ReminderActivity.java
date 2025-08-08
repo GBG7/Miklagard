@@ -139,7 +139,7 @@ public class ReminderActivity extends BaseActivity {
                         existing.setMinute(minute);
                         existing.setFrequency(freq);
                         dbRef.child(existing.getId()).setValue(existing);
-                        ReminderScheduler.cancel(this, existing.getId()); // ✅ Fixed
+                        ReminderScheduler.cancel(this, existing);
                         ReminderScheduler.scheduleReminder(this, existing);
                     }
                 })
@@ -149,7 +149,7 @@ public class ReminderActivity extends BaseActivity {
 
     private void deleteReminder(Reminder r) {
         dbRef.child(r.getId()).removeValue();
-        ReminderScheduler.cancel(this, r.getId()); // ✅ Fixed
+        ReminderScheduler.cancel(this, r);
     }
 
     private void editReminder(Reminder r) {
