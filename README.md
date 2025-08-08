@@ -68,9 +68,11 @@ _Special thanks to our group members:_
   - Questionnaire implementation
   - Git management, group leadership, Firebase configuration
 
-- **Haowen** (h.santiago, Scrum Master backup)
-  - Reminder and notification system
-  - Git management, [add your work here...]
+- **Hans** (Scrum Master backup)
+  - Relationship Status Questionnaire
+  - Questionnaire UI
+  - Reminders and Notifications
+  - Git management, merging and solving conflicts, helping navigate app flow and some user login logic, some testing and debugging, some Firebase management
 
 - **Herman** (herman77777717)
   - Emergency support connection features
