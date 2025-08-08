@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/home_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="24dp">
+
+    <Button
+        android:id="@+id/btnTips"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="View Safety Tips" />
+
+    <Button
+        android:id="@+id/btnReminders"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Reminders" />
+
+    <Button
+        android:id="@+id/btnUpdatePlan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Update Plan" />
+
+    <Button
+        android:id="@+id/btnEmergency"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Emergency Support Connections" />
+
+    <Button
+        android:id="@+id/btnExit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Exit" />
+</LinearLayout>

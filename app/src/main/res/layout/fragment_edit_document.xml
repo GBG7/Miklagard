@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddItemFragment">
+
+    <EditText
+        android:id="@+id/editDocumentTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Enter Document title here"
+        android:maxLines="7"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <EditText
+        android:id="@+id/editDocumentDescription"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Enter Document description here"
+        android:maxLines="7"
+        app:layout_constraintTop_toBottomOf="@+id/editDocumentTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/textViewSelectedFile"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Kindly note that you cannot re-upload the file as you edit an existing document."
+        app:layout_constraintTop_toBottomOf="@+id/editDocumentDescription"
+        app:layout_constraintStart_toStartOf="@+id/editDocumentTitle"
+        app:layout_constraintEnd_toEndOf="@+id/editDocumentTitle"
+        android:gravity="center"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"/>
+
+    <Button
+        android:id="@+id/buttonUpdate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Update Document"
+        app:layout_constraintTop_toBottomOf="@+id/textViewSelectedFile"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
