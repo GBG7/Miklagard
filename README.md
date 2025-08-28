@@ -1,6 +1,9 @@
 # B07Project
 
 **Use [tempmailo.com](https://tempmailo.com/) to create emails for signup, login, email verification, password reset, and related testing scenarios.**
+## Demo
+https://youtu.be/gDvsQ6gJf-w
+
 
 ---
 
@@ -91,10 +94,6 @@ _(Feel free to highlight your contributions!)_
 
 ---
 
-## Demo
-https://youtu.be/gDvsQ6gJf-w
-
-**Display video:** _To be announced_
 
 ---
 
